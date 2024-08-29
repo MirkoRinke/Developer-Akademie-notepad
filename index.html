@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/img/icon/fav.png" />
+    <script src="./js/templates.js" defer></script>
+    <script src="./js/scripts.js" defer></script>
+    <link rel="stylesheet" href="./css/styles.css" />
+    <title>Notizblock</title>
+  </head>
+  <body>
+    <main class="main_container">
+      <div class="main_container--note_main_container">
+        <div class="main_container--note_main_container--input_container">
+          <h1 class="main_container--note_main_container--input_container--heading">Notizblock</h1>
+          <div class="main_container--note_main_container--input_container--title_container">
+            <label
+              class="main_container--note_main_container--input_container--title_container--title"
+              for="noteInputTitle"
+              >Title</label
+            >
+            <input
+              class="main_container--note_main_container--input_container--title_container--title_input"
+              id="noteInputTitle"
+              type="text" />
+          </div>
+          <div class="main_container--note_main_container--input_container--note_container">
+            <label
+              class="main_container--note_main_container--input_container--note_container--note"
+              for="noteInputNote"
+              >Notiz</label
+            >
+            <textarea
+              class="main_container--note_main_container--input_container--note_container--note_input"
+              id="noteInputNote"
+              rows="8"
+              cols="50"></textarea>
+            <img
+              class="main_container--note_main_container--input_container--note_container--note_Button"
+              id="noteButton"
+              src="./assets/img/icon/save.svg"
+              alt="Save Button" />
+          </div>
+        </div>
+        <div class="main_container--note_main_container--notes">
+          <h2 class="main_container--note_main_container--notes--heading_Notes">
+            <img src="./assets/img/icon/note.svg" alt="Notiz Logo" />Notizen
+          </h2>
+          <div class="main_container--note_main_container--notes--content" id="noteContent"></div>
+        </div>
+
+        <div class="main_container--note_main_container--archiv">
+          <h2 class="main_container--note_main_container--archiv--heading_archiv">
+            <img src="./assets/img/icon/archiv.svg" alt="Archiv Logo" />Archiv
+          </h2>
+          <div class="main_container--note_main_container--archiv--archivContent" id="archivContent"></div>
+        </div>
+
+        <div class="main_container--note_main_container--trash">
+          <h2 class="main_container--note_main_container--trash--heading_trash">
+            <img src="./assets/img/icon/trash.svg" alt="Papierkorb Logo" />Papierkorb
+          </h2>
+          <div class="main_container--note_main_container--trash--trashContent" id="trashContent"></div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
