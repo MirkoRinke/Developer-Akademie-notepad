@@ -49,7 +49,7 @@ $breakpoint-xxs: 300px !default;
   position: relative;
   max-width: $note_width;
   width: 100%;
-  padding: 20px 20px 20px 20px;
+  padding: 5px 20px 20px 20px;
   border: 2px solid $mainFontColor;
   border-radius: 10px;
   margin-top: 20px;
@@ -64,7 +64,7 @@ $breakpoint-xxs: 300px !default;
   padding: 5px 10px;
   margin-top: 5px;
   margin-right: 5px;
-  transition: filter 300ms ease-in-out;
+  transition: filter 150ms ease-in-out;
 
   &:hover {
     filter: brightness(0) saturate(100%);
@@ -227,7 +227,6 @@ $breakpoint-xxs: 300px !default;
           &--heading {
             font-size: 18px;
             font-weight: bold;
-            margin-top: 15px;
             margin-bottom: 10px;
             margin-right: 40px;
           }
@@ -287,7 +286,6 @@ $breakpoint-xxs: 300px !default;
           &--heading {
             font-size: 18px;
             font-weight: bold;
-            margin-top: 15px;
             margin-bottom: 10px;
             margin-right: 40px;
           }
@@ -339,13 +337,13 @@ $breakpoint-xxs: 300px !default;
           &--heading {
             font-size: 18px;
             font-weight: bold;
-            margin-top: 15px;
             margin-bottom: 10px;
             margin-right: 40px;
           }
 
           &--delete_button {
             @include button_style;
+            transform: scale(1.15);
             &:hover {
               filter: brightness(0) saturate(100%) invert(8%) sepia(56%) saturate(7010%) hue-rotate(356deg)
                 brightness(95%) contrast(111%);

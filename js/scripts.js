@@ -2,6 +2,18 @@ const noteInputNoteRef = document.getElementById("noteInputNote");
 const noteInputTitleRef = document.getElementById("noteInputTitle");
 const noteButtonRef = document.getElementById("noteButton");
 
+let currentDateRef;
+let currentDate;
+let currentTime;
+let noteDate;
+
+function getCurrentDate() {
+  currentDateRef = new Date();
+  currentDate = currentDateRef.toLocaleDateString("de-DE"); // https://www.w3schools.com/jsref/jsref_tolocaledatestring.asp
+  currentTime = currentDateRef.toLocaleTimeString("de-DE"); // https://www.w3schools.com/jsref/jsref_tolocaletimestring.asp
+  noteDate = currentDate + " " + currentTime;
+}
+
 let notesTitles = [];
 let notes = [];
 let archivNotesTitles = [];
@@ -76,10 +88,11 @@ renderTrashNotes();
  *****************************/
 //! Function for adding a note from the input field.
 function addNote() {
+  getCurrentDate();
   let note = noteInputNoteRef.value;
   let title = noteInputTitleRef.value;
   if ((note !== "") & (title !== "")) {
-    notes.unshift(note);
+    notes.unshift(note.replace(/\n/g, "<br>") + "<br>" + noteDate);
     notesTitles.unshift(title);
     noteInputNoteRef.value = "";
     noteInputTitleRef.value = "";

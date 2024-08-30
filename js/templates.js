@@ -43,7 +43,7 @@ function getTrashNotesTemplate(indexTrashNotes) {
       </p>
       <p>${trashNotes[indexTrashNotes]} 
       <img class="main_container--note_main_container--trash--trashContent--trash_note--delete_button" 
-      onclick="deleteNotes(${[indexTrashNotes]})" src="./assets/img/icon/trash.svg" alt="">
+      onclick="deleteNotes(${[indexTrashNotes]})" src="./assets/img/icon/delete.svg" alt="">
       <img class="main_container--note_main_container--trash--trashContent--trash_note--archiv_button" 
       onclick="trashToArchiv(${[indexTrashNotes]})" src="./assets/img/icon/archiv.svg" alt="">
       <img class="main_container--note_main_container--trash--trashContent--trash_note--note_button" 

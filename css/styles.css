@@ -141,7 +141,7 @@
   padding: 5px 10px;
   margin-top: 5px;
   margin-right: 5px;
-  transition: filter 300ms ease-in-out;
+  transition: filter 150ms ease-in-out;
   height: 50px;
   margin-top: 0px;
   top: 55px;
@@ -179,7 +179,7 @@
   position: relative;
   max-width: 800px;
   width: 100%;
-  padding: 20px 20px 20px 20px;
+  padding: 5px 20px 20px 20px;
   border: 2px solid rgba(105, 105, 105, 0.8);
   border-radius: 10px;
   margin-top: 20px;
@@ -192,7 +192,6 @@
 .main_container--note_main_container--notes--content--note--heading {
   font-size: 18px;
   font-weight: bold;
-  margin-top: 15px;
   margin-bottom: 10px;
   margin-right: 40px;
 }
@@ -203,7 +202,7 @@
   padding: 5px 10px;
   margin-top: 5px;
   margin-right: 5px;
-  transition: filter 300ms ease-in-out;
+  transition: filter 150ms ease-in-out;
 }
 .main_container--note_main_container--notes--content--note--delete_button:hover {
   filter: brightness(0) saturate(100%);
@@ -219,7 +218,7 @@
   padding: 5px 10px;
   margin-top: 5px;
   margin-right: 5px;
-  transition: filter 300ms ease-in-out;
+  transition: filter 150ms ease-in-out;
   right: 40px;
 }
 .main_container--note_main_container--notes--content--note--archiv_button:hover {
@@ -236,7 +235,7 @@
   padding: 5px 10px;
   margin-top: 5px;
   margin-right: 5px;
-  transition: filter 300ms ease-in-out;
+  transition: filter 150ms ease-in-out;
   right: 80px;
 }
 .main_container--note_main_container--notes--content--note--input_button:hover {
@@ -269,7 +268,7 @@
   position: relative;
   max-width: 800px;
   width: 100%;
-  padding: 20px 20px 20px 20px;
+  padding: 5px 20px 20px 20px;
   border: 2px solid rgba(105, 105, 105, 0.8);
   border-radius: 10px;
   margin-top: 20px;
@@ -282,7 +281,6 @@
 .main_container--note_main_container--archiv--archivContent--archiv_note--heading {
   font-size: 18px;
   font-weight: bold;
-  margin-top: 15px;
   margin-bottom: 10px;
   margin-right: 40px;
 }
@@ -293,7 +291,7 @@
   padding: 5px 10px;
   margin-top: 5px;
   margin-right: 5px;
-  transition: filter 300ms ease-in-out;
+  transition: filter 150ms ease-in-out;
 }
 .main_container--note_main_container--archiv--archivContent--archiv_note--delete_button:hover {
   filter: brightness(0) saturate(100%);
@@ -309,7 +307,7 @@
   padding: 5px 10px;
   margin-top: 5px;
   margin-right: 5px;
-  transition: filter 300ms ease-in-out;
+  transition: filter 150ms ease-in-out;
   right: 40px;
 }
 .main_container--note_main_container--archiv--archivContent--archiv_note--note_button:hover {
@@ -344,7 +342,7 @@
   position: relative;
   max-width: 800px;
   width: 100%;
-  padding: 20px 20px 20px 20px;
+  padding: 5px 20px 20px 20px;
   border: 2px solid rgba(105, 105, 105, 0.8);
   border-radius: 10px;
   margin-top: 20px;
@@ -357,7 +355,6 @@
 .main_container--note_main_container--trash--trashContent--trash_note--heading {
   font-size: 18px;
   font-weight: bold;
-  margin-top: 15px;
   margin-bottom: 10px;
   margin-right: 40px;
 }
@@ -368,7 +365,8 @@
   padding: 5px 10px;
   margin-top: 5px;
   margin-right: 5px;
-  transition: filter 300ms ease-in-out;
+  transition: filter 150ms ease-in-out;
+  transform: scale(1.15);
 }
 .main_container--note_main_container--trash--trashContent--trash_note--delete_button:hover {
   filter: brightness(0) saturate(100%);
@@ -384,7 +382,7 @@
   padding: 5px 10px;
   margin-top: 5px;
   margin-right: 5px;
-  transition: filter 300ms ease-in-out;
+  transition: filter 150ms ease-in-out;
   right: 40px;
 }
 .main_container--note_main_container--trash--trashContent--trash_note--archiv_button:hover {
@@ -401,7 +399,7 @@
   padding: 5px 10px;
   margin-top: 5px;
   margin-right: 5px;
-  transition: filter 300ms ease-in-out;
+  transition: filter 150ms ease-in-out;
   right: 80px;
 }
 .main_container--note_main_container--trash--trashContent--trash_note--note_button:hover {
