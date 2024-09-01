@@ -1,33 +1,46 @@
-const noteInputNoteRef = document.getElementById("noteInputNote");
 const noteInputTitleRef = document.getElementById("noteInputTitle");
+const noteInputNoteRef = document.getElementById("noteInputNote");
 const noteButtonRef = document.getElementById("noteButton");
 
-let currentDateRef;
-let currentDate;
-let currentTime;
-let noteDate;
+let allNotes = {
+  notesTitles: [],
+  notes: [],
+  archivNotesTitles: [],
+  archivNotes: [],
+  trashNotesTitles: [],
+  trashNotes: [],
+};
+
+noteInputTitleRef.addEventListener("input", function () {
+  noteInputTitleRef.style.borderColor = "rgb(105, 105, 105, 0.8)";
+});
+
+noteInputNoteRef.addEventListener("input", function () {
+  noteInputNoteRef.style.borderColor = "rgb(105, 105, 105, 0.8)";
+});
+
+noteButtonRef.addEventListener("click", addNote);
 
 function getCurrentDate() {
-  currentDateRef = new Date();
-  currentDate = currentDateRef.toLocaleDateString("de-DE"); // https://www.w3schools.com/jsref/jsref_tolocaledatestring.asp
-  currentTime = currentDateRef.toLocaleTimeString("de-DE"); // https://www.w3schools.com/jsref/jsref_tolocaletimestring.asp
-  noteDate = currentDate + " " + currentTime;
+  let currentDateRef = new Date();
+  let day = String(currentDateRef.getDate()).padStart(2, "0"); // https://www.w3schools.com/jsreF/jsref_string_padstart.asp
+  let month = String(currentDateRef.getMonth() + 1).padStart(2, "0");
+  let year = currentDateRef.getFullYear();
+  let hours = String(currentDateRef.getHours()).padStart(2, "0");
+  let minutes = String(currentDateRef.getMinutes()).padStart(2, "0");
+  let seconds = String(currentDateRef.getSeconds()).padStart(2, "0");
+  let currentDate = day + "." + month + "." + year;
+  let currentTime = hours + "." + minutes + "." + seconds;
+  return currentDate + " " + currentTime;
 }
 
-let notesTitles = [];
-let notes = [];
-let archivNotesTitles = [];
-let archivNotes = [];
-let trashNotesTitles = [];
-let trashNotes = [];
-
 function saveToLocalStorage() {
-  localStorage.setItem("notesTitles", JSON.stringify(notesTitles));
-  localStorage.setItem("notes", JSON.stringify(notes));
-  localStorage.setItem("archivNotesTitles", JSON.stringify(archivNotesTitles));
-  localStorage.setItem("archivNotes", JSON.stringify(archivNotes));
-  localStorage.setItem("trashNotesTitles", JSON.stringify(trashNotesTitles));
-  localStorage.setItem("trashNotes", JSON.stringify(trashNotes));
+  localStorage.setItem("notesTitles", JSON.stringify(allNotes.notesTitles));
+  localStorage.setItem("notes", JSON.stringify(allNotes.notes));
+  localStorage.setItem("archivNotesTitles", JSON.stringify(allNotes.archivNotesTitles));
+  localStorage.setItem("archivNotes", JSON.stringify(allNotes.archivNotes));
+  localStorage.setItem("trashNotesTitles", JSON.stringify(allNotes.trashNotesTitles));
+  localStorage.setItem("trashNotes", JSON.stringify(allNotes.trashNotes));
 }
 
 function getFromLocalStorage() {
@@ -37,157 +50,82 @@ function getFromLocalStorage() {
   const archivNotesStorage = JSON.parse(localStorage.getItem("archivNotes"));
   const trashNotesTitlesStorage = JSON.parse(localStorage.getItem("trashNotesTitles"));
   const trashNotesStorage = JSON.parse(localStorage.getItem("trashNotes"));
-
-  if (notesTitlesStorage) notesTitles = notesTitlesStorage;
-  if (notesStorage) notes = notesStorage;
-  if (archivNotesTitlesStorage) archivNotesTitles = archivNotesTitlesStorage;
-  if (archivNotesStorage) archivNotes = archivNotesStorage;
-  if (trashNotesTitlesStorage) trashNotesTitles = trashNotesTitlesStorage;
-  if (trashNotesStorage) trashNotes = trashNotesStorage;
+  if (notesTitlesStorage) allNotes.notesTitles = notesTitlesStorage;
+  if (notesStorage) allNotes.notes = notesStorage;
+  if (archivNotesTitlesStorage) allNotes.archivNotesTitles = archivNotesTitlesStorage;
+  if (archivNotesStorage) allNotes.archivNotes = archivNotesStorage;
+  if (trashNotesTitlesStorage) allNotes.trashNotesTitles = trashNotesTitlesStorage;
+  if (trashNotesStorage) allNotes.trashNotes = trashNotesStorage;
 }
 getFromLocalStorage();
-/******************************
- *                            *
- *           Render           *
- *                            *
- *****************************/
-//! The function to display the content ( render )
-function renderNotes() {
-  let contentRef = document.getElementById("noteContent");
+
+function renderContent(renderContent) {
+  let contentRef;
+  let notesArray;
+  let templateFunction;
+  if (renderContent === "notes") {
+    contentRef = document.getElementById("noteContent");
+    notesArray = allNotes.notes;
+    templateFunction = getNotesTemplate;
+  } else if (renderContent === "archiv") {
+    contentRef = document.getElementById("archivContent");
+    notesArray = allNotes.archivNotes;
+    templateFunction = getArchivNotesTemplate;
+  } else if (renderContent === "trash") {
+    contentRef = document.getElementById("trashContent");
+    notesArray = allNotes.trashNotes;
+    templateFunction = getTrashNotesTemplate;
+  }
   contentRef.innerHTML = "";
-  for (let indexNotes = 0; indexNotes < notes.length; indexNotes++) {
-    contentRef.innerHTML += getNotesTemplate(indexNotes);
+  for (let index = 0; index < notesArray.length; index++) {
+    contentRef.innerHTML += templateFunction(index);
   }
   saveToLocalStorage();
 }
-renderNotes();
-//! The function to display the archivContent ( render )
-function renderArchivNotes() {
-  let archivContentRef = document.getElementById("archivContent");
-  archivContentRef.innerHTML = "";
-  for (let indexArchivNotes = 0; indexArchivNotes < archivNotes.length; indexArchivNotes++) {
-    archivContentRef.innerHTML += getArchivNotesTemplate(indexArchivNotes);
-  }
-  saveToLocalStorage();
+
+function render() {
+  renderContent("notes");
+  renderContent("archiv");
+  renderContent("trash");
 }
-renderArchivNotes();
-//! The function to display the trashContent ( render )
-function renderTrashNotes() {
-  let trashContentRef = document.getElementById("trashContent");
-  trashContentRef.innerHTML = "";
-  for (let indexTrashNotes = 0; indexTrashNotes < trashNotes.length; indexTrashNotes++) {
-    trashContentRef.innerHTML += getTrashNotesTemplate(indexTrashNotes);
-  }
-  saveToLocalStorage();
-}
-renderTrashNotes();
-/******************************
- *                            *
- *           Input            *
- *                            *
- *****************************/
-//! Function for adding a note from the input field.
+render();
+
 function addNote() {
-  getCurrentDate();
+  let noteDate = getCurrentDate();
   let note = noteInputNoteRef.value;
   let title = noteInputTitleRef.value;
   if ((note !== "") & (title !== "")) {
-    notes.unshift(note.replace(/\n/g, "<br>") + "<br>" + noteDate);
-    notesTitles.unshift(title);
+    allNotes.notes.unshift(note.replace(/\n/g, "<br>") + "<br>" + noteDate); // https://www.w3schools.com/jsref/jsref_obj_regexp.asp
+    allNotes.notesTitles.unshift(title);
     noteInputNoteRef.value = "";
     noteInputTitleRef.value = "";
   }
   if (title == "") noteInputTitleRef.style.borderBottomColor = "red";
   if (note == "") noteInputNoteRef.style.borderColor = "red";
-  renderNotes();
+  render();
 }
-//! EventListener
-noteButtonRef.addEventListener("click", addNote);
 
-noteInputNoteRef.addEventListener("input", function () {
-  noteInputNoteRef.style.borderColor = "rgb(105, 105, 105, 0.8)";
-});
+function moveTo(indexNotes, startkey, destinationKey) {
+  let notes = allNotes[startkey].splice(indexNotes, 1);
+  allNotes[destinationKey].unshift(notes[0]);
+  let notesTitle = allNotes[startkey + "Titles"].splice(indexNotes, 1);
+  allNotes[destinationKey + "Titles"].unshift(notesTitle[0]);
+  render();
+}
 
-noteInputTitleRef.addEventListener("input", function () {
-  noteInputTitleRef.style.borderColor = "rgb(105, 105, 105, 0.8)";
-});
-/******************************
- *                            *
- *            move            *
- *                            *
- *****************************/
-//! Notes to Trash
-function notesToTrash(indexNotes) {
-  let trashNote = notes.splice(indexNotes, 1);
-  trashNotes.unshift(trashNote[0]);
-  let trashNotesTitle = notesTitles.splice(indexNotes, 1);
-  trashNotesTitles.unshift(trashNotesTitle[0]);
-  renderNotes();
-  renderTrashNotes();
-}
-//! Note to Archiv
-function notesToArchiv(indexNotes) {
-  let archivNote = notes.splice(indexNotes, 1);
-  archivNotes.unshift(archivNote[0]);
-  let archivNotesTitle = notesTitles.splice(indexNotes, 1);
-  archivNotesTitles.unshift(archivNotesTitle[0]);
-  renderNotes();
-  renderArchivNotes();
-}
-//! Note return to Input
 function returnNotesToInput(indexNotes) {
-  if ((noteInputNoteRef.value == "") & (noteInputTitleRef.value == "")) {
-    let inputNote = notes.splice(indexNotes, 1);
+  if (noteInputNoteRef.value === "" && noteInputTitleRef.value === "") {
+    let inputNote = allNotes.notes.splice(indexNotes, 1)[0];
+    let inputTitle = allNotes.notesTitles.splice(indexNotes, 1)[0];
+    if (inputNote.length > 23) inputNote = inputNote.slice(0, -23);
     noteInputNoteRef.value = inputNote;
-    let inputTitle = notesTitles.splice(indexNotes, 1);
     noteInputTitleRef.value = inputTitle;
   }
-  renderNotes();
+  render();
 }
-//! Archiv to Trash
-function archivToTrash(indexArchivNotes) {
-  let trashNote = archivNotes.splice(indexArchivNotes, 1);
-  let trashNotesTitle = archivNotesTitles.splice(indexArchivNotes, 1);
-  trashNotes.unshift(trashNote[0]);
-  trashNotesTitles.unshift(trashNotesTitle[0]);
-  renderArchivNotes();
-  renderTrashNotes();
-}
-//! Archiv to note
-function archivTonote(indexArchivNotes) {
-  let note = archivNotes.splice(indexArchivNotes, 1);
-  let notesTitle = archivNotesTitles.splice(indexArchivNotes, 1);
-  notes.unshift(note[0]);
-  notesTitles.unshift(notesTitle[0]);
-  renderArchivNotes();
-  renderNotes();
-}
-//! Trash to Archiv
-function trashToArchiv(indexTrashNotes) {
-  let archivNote = trashNotes.splice(indexTrashNotes, 1);
-  let archivNotesTitle = trashNotesTitles.splice(indexTrashNotes, 1);
-  archivNotes.unshift(archivNote[0]);
-  archivNotesTitles.unshift(archivNotesTitle[0]);
-  renderArchivNotes();
-  renderTrashNotes();
-}
-//! Trash to note
-function trashTonote(indexTrashNotes) {
-  let note = trashNotes.splice(indexTrashNotes, 1);
-  let notesTitle = trashNotesTitles.splice(indexTrashNotes, 1);
-  notes.unshift(note[0]);
-  notesTitles.unshift(notesTitle[0]);
-  renderTrashNotes();
-  renderNotes();
-}
-/******************************
- *                            *
- *          delete            *
- *                            *
- *****************************/
-//! Trash to delete
+
 function deleteNotes(indexTrashNotes) {
-  trashNotes.splice(indexTrashNotes, 1);
-  trashNotesTitles.splice(indexTrashNotes, 1);
-  renderTrashNotes();
+  allNotes.trashNotes.splice(indexTrashNotes, 1);
+  allNotes.trashNotesTitles.splice(indexTrashNotes, 1);
+  render();
 }
