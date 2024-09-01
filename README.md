@@ -5,7 +5,7 @@
 
 ### 📋 Overview
 
-Here you will find a practical notepad with which you can quickly and easily record your thoughts, ideas and to-dos. Simple, clear and always to hand.
+Welcome to my sixth project as part of the Developer Academy! In this project, I created a simple and practical notepad where you can quickly and easily jot down your thoughts, ideas, and to-dos.
 
 ## 🔗 Links
 
