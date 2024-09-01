@@ -35,6 +35,21 @@ $breakpoint-xs: 350px !default;
 /** 300px oder schmaler */
 $breakpoint-xxs: 300px !default;
 
+/** Breakpoints */
+/*
+@media (max-width: $breakpoint-xl) {}
+
+@media (max-width: $breakpoint-lg) {}
+
+@media (max-width: $breakpoint-md) {}
+
+@media (max-width: $breakpoint-sm) {}
+
+@media (max-width: $breakpoint-xs) {}
+
+@media (max-width: $breakpoint-xxs) {}
+*/
+
 * {
   margin: 0px;
   padding: 0px;
@@ -235,16 +250,14 @@ $breakpoint-xxs: 300px !default;
             @include button_style;
 
             &:hover {
-              filter: brightness(0) saturate(100%) invert(8%) sepia(56%) saturate(7010%) hue-rotate(356deg)
-                brightness(95%) contrast(111%);
+              filter: brightness(0) saturate(100%) invert(8%) sepia(56%) saturate(7010%) hue-rotate(356deg) brightness(95%) contrast(111%);
             }
           }
           &--archiv_button {
             @include button_style;
             right: 40px;
             &:hover {
-              filter: brightness(0) saturate(100%) invert(30%) sepia(96%) saturate(996%) hue-rotate(87deg)
-                brightness(91%) contrast(109%);
+              filter: brightness(0) saturate(100%) invert(30%) sepia(96%) saturate(996%) hue-rotate(87deg) brightness(91%) contrast(109%);
             }
           }
           &--input_button {
@@ -293,8 +306,7 @@ $breakpoint-xxs: 300px !default;
           &--delete_button {
             @include button_style;
             &:hover {
-              filter: brightness(0) saturate(100%) invert(8%) sepia(56%) saturate(7010%) hue-rotate(356deg)
-                brightness(95%) contrast(111%);
+              filter: brightness(0) saturate(100%) invert(8%) sepia(56%) saturate(7010%) hue-rotate(356deg) brightness(95%) contrast(111%);
             }
           }
           &--note_button {
@@ -345,16 +357,14 @@ $breakpoint-xxs: 300px !default;
             @include button_style;
             transform: scale(1.15);
             &:hover {
-              filter: brightness(0) saturate(100%) invert(8%) sepia(56%) saturate(7010%) hue-rotate(356deg)
-                brightness(95%) contrast(111%);
+              filter: brightness(0) saturate(100%) invert(8%) sepia(56%) saturate(7010%) hue-rotate(356deg) brightness(95%) contrast(111%);
             }
           }
           &--archiv_button {
             @include button_style;
             right: 40px;
             &:hover {
-              filter: brightness(0) saturate(100%) invert(30%) sepia(96%) saturate(996%) hue-rotate(87deg)
-                brightness(91%) contrast(109%);
+              filter: brightness(0) saturate(100%) invert(30%) sepia(96%) saturate(996%) hue-rotate(87deg) brightness(91%) contrast(109%);
             }
           }
           &--note_button {
