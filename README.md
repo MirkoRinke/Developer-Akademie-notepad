@@ -23,12 +23,12 @@ Here you will find a practical notepad with which you can quickly and easily rec
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/MirkoRinke/notepad.git
+   git clone https://github.com/MirkoRinke/Developer-Akademie-notepad.git
    ```
 
 2. Navigate to the project directory:
    ```bash
-   cd notepad
+   cd Developer-Akademie-notepad
    ```
 
 ## ✍️ Author
