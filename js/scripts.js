@@ -67,11 +67,11 @@ function renderContent(renderContent) {
     contentRef = document.getElementById("noteContent");
     notesArray = allNotes.notes;
     templateFunction = getNotesTemplate;
-  } else if (renderContent === "archiv") {
+  } else if (renderContent === "archivNotes") {
     contentRef = document.getElementById("archivContent");
     notesArray = allNotes.archivNotes;
     templateFunction = getArchivNotesTemplate;
-  } else if (renderContent === "trash") {
+  } else if (renderContent === "trashNotes") {
     contentRef = document.getElementById("trashContent");
     notesArray = allNotes.trashNotes;
     templateFunction = getTrashNotesTemplate;
@@ -85,8 +85,8 @@ function renderContent(renderContent) {
 
 function render() {
   renderContent("notes");
-  renderContent("archiv");
-  renderContent("trash");
+  renderContent("archivNotes");
+  renderContent("trashNotes");
 }
 render();
 
@@ -102,7 +102,7 @@ function addNote() {
   }
   if (title == "") noteInputTitleRef.style.borderBottomColor = "red";
   if (note == "") noteInputNoteRef.style.borderColor = "red";
-  render();
+  renderContent("notes");
 }
 
 function moveTo(indexNotes, startkey, destinationKey) {
@@ -110,7 +110,8 @@ function moveTo(indexNotes, startkey, destinationKey) {
   allNotes[destinationKey].unshift(notes[0]);
   let notesTitle = allNotes[startkey + "Titles"].splice(indexNotes, 1);
   allNotes[destinationKey + "Titles"].unshift(notesTitle[0]);
-  render();
+  renderContent(startkey);
+  renderContent(destinationKey);
 }
 
 function returnNotesToInput(indexNotes) {
@@ -121,11 +122,11 @@ function returnNotesToInput(indexNotes) {
     noteInputNoteRef.value = inputNote;
     noteInputTitleRef.value = inputTitle;
   }
-  render();
+  renderContent("notes");
 }
 
 function deleteNotes(indexTrashNotes) {
   allNotes.trashNotes.splice(indexTrashNotes, 1);
   allNotes.trashNotesTitles.splice(indexTrashNotes, 1);
-  render();
+  renderContent("trashNotes");
 }
