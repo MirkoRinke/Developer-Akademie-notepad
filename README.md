@@ -16,8 +16,7 @@ Welcome to my sixth project as part of the Developer Academy! In this project, I
 
 - HTML
 - CSS / SCSS
-- Flexbox
-
+- JS
 
 ## ⚙️ How to Use
 
