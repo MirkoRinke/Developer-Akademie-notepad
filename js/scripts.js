@@ -105,12 +105,12 @@ function addNote() {
   renderContent("notes");
 }
 
-function moveTo(indexNotes, startkey, destinationKey) {
-  let notes = allNotes[startkey].splice(indexNotes, 1);
+function moveTo(indexNotes, startKey, destinationKey) {
+  let notes = allNotes[startKey].splice(indexNotes, 1);
   allNotes[destinationKey].unshift(notes[0]);
-  let notesTitle = allNotes[startkey + "Titles"].splice(indexNotes, 1);
+  let notesTitle = allNotes[startKey + "Titles"].splice(indexNotes, 1);
   allNotes[destinationKey + "Titles"].unshift(notesTitle[0]);
-  renderContent(startkey);
+  renderContent(startKey);
   renderContent(destinationKey);
 }
 
