@@ -7,10 +7,6 @@
 
 Welcome to my sixth project as part of the Developer Academy! In this project, I created a simple and practical notepad where you can quickly and easily jot down your thoughts, ideas, and to-dos.
 
-## 🔗 Links
-
-- [Live Site URL](https://majestic-buttercream-7505dd.netlify.app)
-
 
 ## 🛠️ Built with
 
@@ -32,4 +28,5 @@ Welcome to my sixth project as part of the Developer Academy! In this project, I
 
 ## ✍️ Author
 
-- Website - [My Github](https://github.com/MirkoRinke)
+ - [Webiste](https://mirkorinke.dev)
+ - [Github](https://github.com/MirkoRinke)
